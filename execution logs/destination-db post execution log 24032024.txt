@@ -1,0 +1,49 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\chait\docker_tutorial\elt> docker exec -it elt-destination_postgres-1 psql -U postgres
+psql (15.6 (Debian 15.6-1.pgdg120+2))
+Type "help" for help.
+
+postgres=# \c destination_db
+You are now connected to database "destination_db" as user "postgres".
+destination_db=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ public | actors        | table | postgres
+ public | film_actors   | table | postgres
+ public | film_category | table | postgres
+ public | films         | table | postgres
+ public | users         | table | postgres
+(5 rows)
+
+destination_db=# select * from actors
+destination_db-# ;
+ actor_id |    actor_name
+----------+-------------------
+        1 | Leonardo DiCaprio
+        2 | Tim Robbins
+        3 | Marlon Brando
+        4 | Christian Bale
+        5 | John Travolta
+        6 | Keanu Reeves
+        7 | Tom Hanks
+        8 | Tom Hanks
+        9 | Sam Neill
+       10 | Sam Worthington
+       11 | Ryan Gosling
+       12 | Tom Hardy
+       13 | Anthony Gonzalez
+       14 | Fionn Whitehead
+       15 | Shameik Moore
+       16 | Song Kang-ho
+       17 | Miles Teller
+       18 | Amy Poehler
+       19 | Ralph Fiennes
+       20 | Emma Stone
+(20 rows)
+
+destination_db=#

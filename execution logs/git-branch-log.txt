@@ -1,0 +1,149 @@
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (main)
+$ git branch --all
+* main
+  remotes/Data-Engineering/main
+  remotes/Data-Engineering/master
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (main)
+$ git remote set-head origin master
+error: Not a valid ref: refs/remotes/origin/master
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (main)
+$ git remote set-head Data-Engineering master
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (main)
+$ git branch --all
+* main
+  remotes/Data-Engineering/HEAD -> Data-Engineering/master
+  remotes/Data-Engineering/main
+  remotes/Data-Engineering/master
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (main)
+$ git pull
+Already up to date.
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (main)
+$ git push
+Everything up-to-date
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (main)
+$ git checkout -b master
+Switched to a new branch 'master'
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git branch --all
+  main
+* master
+  remotes/Data-Engineering/HEAD -> Data-Engineering/master
+  remotes/Data-Engineering/main
+  remotes/Data-Engineering/master
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream Data-Engineering master
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git push --set-upstream Data-Engineering master
+To https://github.com/chaitanya-e/Data-Engineering.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/chaitanya-e/Data-Engineeing.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=Data-Engineering/<branch> master
+
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git pull Data-Engineering master
+From https://github.com/chaitanya-e/Data-Engineering
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ ^C
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ ^C
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git pull Data-Engineering master --allow-unrelated-histories
+From https://github.com/chaitanya-e/Data-Engineering
+ * branch            master     -> FETCH_HEAD
+Merge made by the 'ort' strategy.
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git branch --all
+  main
+* master
+  remotes/Data-Engineering/HEAD -> Data-Engineering/master
+  remotes/Data-Engineering/main
+  remotes/Data-Engineering/master
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream Data-Engineering master
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git push --set-upstream Data-Engineering master
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 331 bytes | 331.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/chaitanya-e/Data-Engineering.git
+   8e839e2..fa42044  master -> master
+branch 'master' set up to track 'Data-Engineering/master'.
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git branch --all
+  main
+* master
+  remotes/Data-Engineering/HEAD -> Data-Engineering/master
+  remotes/Data-Engineering/main
+  remotes/Data-Engineering/master
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git branch -d main
+Deleted branch main (was f114f44).
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git push Data-Engineering -d main
+To https://github.com/chaitanya-e/Data-Engineering.git
+ - [deleted]         main
+
+Chaitanya Emani@Chaitanya MINGW64 ~/docker_tutorial/elt (master)
+$ git branch --all
+* master
+  remotes/Data-Engineering/HEAD -> Data-Engineering/master
+  remotes/Data-Engineering/master

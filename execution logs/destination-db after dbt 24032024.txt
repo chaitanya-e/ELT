@@ -1,0 +1,182 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\chait\docker_tutorial\elt> docker exec -it elt-destination_postgres-1 psql -U postgres
+psql (15.6 (Debian 15.6-1.pgdg120+2))
+Type "help" for help.
+
+postgres=# \dt
+Did not find any relations.
+postgres=# \c destination_db
+You are now connected to database "destination_db" as user "postgres".
+destination_db=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ public | actors        | table | postgres
+ public | film_actors   | table | postgres
+ public | film_category | table | postgres
+ public | films         | table | postgres
+ public | users         | table | postgres
+(5 rows)
+
+destination_db=#
+PS C:\Users\chait\docker_tutorial\elt> \dt
+\dt : The term '\dt' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ \dt
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (\dt:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\chait\docker_tutorial\elt> ^C
+PS C:\Users\chait\docker_tutorial\elt> \q
+\q : The term '\q' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ \q
++ ~~
+    + CategoryInfo          : ObjectNotFound: (\q:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\chait\docker_tutorial\elt> docker exec -it elt-destination_postgres-1 psql -U postgres
+psql (15.6 (Debian 15.6-1.pgdg120+2))
+Type "help" for help.
+
+postgres=# \c destination_db
+You are now connected to database "destination_db" as user "postgres".
+destination_db=# \dn+
+                                       List of schemas
+  Name  |       Owner       |           Access privileges            |      Description
+--------+-------------------+----------------------------------------+------------------------
+ public | pg_database_owner | pg_database_owner=UC/pg_database_owner+| standard public schema
+        |                   | =U/pg_database_owner                   |
+(1 row)
+
+destination_db=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ public | actors        | table | postgres
+ public | film_actors   | table | postgres
+ public | film_category | table | postgres
+ public | films         | table | postgres
+ public | users         | table | postgres
+(5 rows)
+
+destination_db=#
+PS C:\Users\chait\docker_tutorial\elt> docker exec -it elt-destination_postgres-1 psql -U postgres
+psql (15.6 (Debian 15.6-1.pgdg120+2))
+Type "help" for help.
+
+postgres=# \c destination_db
+You are now connected to database "destination_db" as user "postgres".
+destination_db=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ public | actors        | table | postgres
+ public | film_actors   | table | postgres
+ public | film_category | table | postgres
+ public | film_ratings  | table | postgres
+ public | films         | table | postgres
+ public | users         | table | postgres
+(6 rows)
+
+destination_db=# select * from film_ratings
+destination_db-# ;
+ film_id |               title               | release_date | price | rating | user_rating | rating_category |      actors
+---------+-----------------------------------+--------------+-------+--------+-------------+-----------------+-------------------
+       1 | Inception                         | 2010-07-16   | 12.99 | PG-13  |         4.8 | Excellent       | Leonardo DiCaprio
+       2 | The Shawshank Redemption          | 1994-09-23   |  9.99 | R      |         4.9 | Excellent       | Tim Robbins
+       3 | The Godfather                     | 1972-03-24   | 14.99 | R      |         4.7 | Excellent       | Marlon Brando
+       4 | The Dark Knight                   | 2008-07-18   | 11.99 | PG-13  |         4.8 | Excellent       | Christian Bale
+       5 | Pulp Fiction                      | 1994-10-14   | 10.99 | R      |         4.6 | Excellent       | John Travolta
+       6 | The Matrix                        | 1999-03-31   |  9.99 | R      |         4.7 | Excellent       | Keanu Reeves
+       7 | Forrest Gump                      | 1994-07-06   |  8.99 | PG-13  |         4.5 | Excellent       | Tom Hanks
+       8 | Toy Story                         | 1995-11-22   |  7.99 | G      |         4.4 | Good            | Tom Hanks
+       9 | Jurassic Park                     | 1993-06-11   |  9.99 | PG-13  |         4.3 | Good            | Sam Neill
+      10 | Avatar                            | 2009-12-18   | 12.99 | PG-13  |         4.2 | Good            | Sam Worthington
+      11 | Blade Runner 2049                 | 2017-10-06   | 13.99 | R      |         4.3 | Good            | Ryan Gosling
+      12 | Mad Max: Fury Road                | 2015-05-15   | 11.99 | R      |         4.6 | Excellent       | Tom Hardy
+      13 | Coco                              | 2017-11-22   |  9.99 | PG     |         4.8 | Excellent       | Anthony Gonzalez
+      14 | Dunkirk                           | 2017-07-21   | 12.99 | PG-13  |         4.5 | Excellent       | Fionn Whitehead
+      15 | Spider-Man: Into the Spider-Verse | 2018-12-14   | 10.99 | PG     |         4.9 | Excellent       | Shameik Moore
+      16 | Parasite                          | 2019-10-11   | 14.99 | R      |         4.6 | Excellent       | Song Kang-ho
+      17 | Whiplash                          | 2014-10-10   |  9.99 | R      |         4.7 | Excellent       | Miles Teller
+      18 | Inside Out                        | 2015-06-19   |  9.99 | PG     |         4.8 | Excellent       | Amy Poehler
+      19 | The Grand Budapest Hotel          | 2014-03-28   | 10.99 | R      |         4.4 | Good            | Ralph Fiennes
+      20 | La La Land                        | 2016-12-09   | 11.99 | PG-13  |         4.5 | Excellent       | Emma Stone
+(20 rows)
+
+destination_db=#
+PS C:\Users\chait\docker_tutorial\elt> docker exec -it elt-destination_postgres-1 psql -U postgres
+psql (15.6 (Debian 15.6-1.pgdg120+2))
+Type "help" for help.
+
+postgres=# \c destination_db
+You are now connected to database "destination_db" as user "postgres".
+destination_db=# \dt
+                  List of relations
+ Schema |          Name           | Type  |  Owner
+--------+-------------------------+-------+----------
+ public | actors                  | table | postgres
+ public | film_actors             | table | postgres
+ public | film_category           | table | postgres
+ public | film_ratings            | table | postgres
+ public | film_ratings_with_macro | table | postgres
+ public | films                   | table | postgres
+ public | users                   | table | postgres
+(7 rows)
+
+destination_db=# select * from film_ratings_with_macro
+destination_db-# ;
+ film_id |               title               | release_date | price | rating | user_rating | rating_category |      actors
+---------+-----------------------------------+--------------+-------+--------+-------------+-----------------+-------------------
+       1 | Inception                         | 2010-07-16   | 12.99 | PG-13  |         4.8 | Excellent       | Leonardo DiCaprio
+       2 | The Shawshank Redemption          | 1994-09-23   |  9.99 | R      |         4.9 | Excellent       | Tim Robbins
+       3 | The Godfather                     | 1972-03-24   | 14.99 | R      |         4.7 | Excellent       | Marlon Brando
+       4 | The Dark Knight                   | 2008-07-18   | 11.99 | PG-13  |         4.8 | Excellent       | Christian Bale
+       5 | Pulp Fiction                      | 1994-10-14   | 10.99 | R      |         4.6 | Excellent       | John Travolta
+       6 | The Matrix                        | 1999-03-31   |  9.99 | R      |         4.7 | Excellent       | Keanu Reeves
+       7 | Forrest Gump                      | 1994-07-06   |  8.99 | PG-13  |         4.5 | Excellent       | Tom Hanks
+       8 | Toy Story                         | 1995-11-22   |  7.99 | G      |         4.4 | Good            | Tom Hanks
+       9 | Jurassic Park                     | 1993-06-11   |  9.99 | PG-13  |         4.3 | Good            | Sam Neill
+      10 | Avatar                            | 2009-12-18   | 12.99 | PG-13  |         4.2 | Good            | Sam Worthington
+      11 | Blade Runner 2049                 | 2017-10-06   | 13.99 | R      |         4.3 | Good            | Ryan Gosling
+      12 | Mad Max: Fury Road                | 2015-05-15   | 11.99 | R      |         4.6 | Excellent       | Tom Hardy
+      13 | Coco                              | 2017-11-22   |  9.99 | PG     |         4.8 | Excellent       | Anthony Gonzalez
+      14 | Dunkirk                           | 2017-07-21   | 12.99 | PG-13  |         4.5 | Excellent       | Fionn Whitehead
+      15 | Spider-Man: Into the Spider-Verse | 2018-12-14   | 10.99 | PG     |         4.9 | Excellent       | Shameik Moore
+      16 | Parasite                          | 2019-10-11   | 14.99 | R      |         4.6 | Excellent       | Song Kang-ho
+      17 | Whiplash                          | 2014-10-10   |  9.99 | R      |         4.7 | Excellent       | Miles Teller
+      18 | Inside Out                        | 2015-06-19   |  9.99 | PG     |         4.8 | Excellent       | Amy Poehler
+      19 | The Grand Budapest Hotel          | 2014-03-28   | 10.99 | R      |         4.4 | Good            | Ralph Fiennes
+      20 | La La Land                        | 2016-12-09   | 11.99 | PG-13  |         4.5 | Excellent       | Emma Stone
+(20 rows)
+
+destination_db=#
+PS C:\Users\chait\docker_tutorial\elt> docker exec -it elt-destination_postgres-1 psql -U postgres
+psql (15.6 (Debian 15.6-1.pgdg120+2))
+Type "help" for help.
+
+postgres=# \c destination_db
+You are now connected to database "destination_db" as user "postgres".
+destination_db=# \dt
+                  List of relations
+ Schema |          Name           | Type  |  Owner
+--------+-------------------------+-------+----------
+ public | actors                  | table | postgres
+ public | film_actors             | table | postgres
+ public | film_category           | table | postgres
+ public | film_ratings            | table | postgres
+ public | film_ratings_with_macro | table | postgres
+ public | films                   | table | postgres
+ public | specific_movie_genja    | table | postgres
+ public | users                   | table | postgres
+(8 rows)
+
+destination_db=#
